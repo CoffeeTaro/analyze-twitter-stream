@@ -4,7 +4,7 @@
 		module="kuromoji-scala-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20170914164214"
+		publication="20180313113342"
 		e:sbtVersion="1.0" e:scalaVersion="2.12"
 	>
 		<description>
