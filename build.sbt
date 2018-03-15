@@ -6,6 +6,7 @@ scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 resolvers += "Atilika Open Source repository" at "http://www.atilika.org/nexus/content/repositories/atilika"
 
 libraryDependencies ++= Seq(
+    "com.typesafe" % "config" % "1.3.2",
     "org.atilika.kuromoji" % "kuromoji" % "0.7.7",
     "org.apache.spark" % "spark-streaming_2.11" % "2.2.0",
     "org.apache.spark" %% "spark-streaming-twitter" % "1.6.3"
