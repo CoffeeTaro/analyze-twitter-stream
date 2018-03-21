@@ -12,6 +12,11 @@ object Main extends App{
   val consumerSecret = config.getString("consumerSecret")
   val accessToken = config.getString("accessToken")
   val accessTokenSecret = config.getString("accessTokenSecret")
+  // Twitter Keysの設定
+  System.setProperty("twitter4j.oauth.consumerKey", consumerKey)
+  System.setProperty("twitter4j.oauth.consumerSecret", consumerSecret)
+  System.setProperty("twitter4j.oauth.accessToken", accessToken)
+  System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
   // Sparkの初期設定
   val conf = new SparkConf().setMaster("local[4]").setAppName("geoTweetStream")
