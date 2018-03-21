@@ -12,13 +12,11 @@ object Main extends App{
   val consumerSecret = config.getString("consumerSecret")
   val accessToken = config.getString("accessToken")
   val accessTokenSecret = config.getString("accessTokenSecret")
-  println(s"aaa")
-  println(accessTokenSecret)
 
   // Sparkの初期設定
-  // val conf = new SparkConf().setMaster("local[4]").setAppName("geoTweetStream")
-  // val ssc = new StreamingContext(conf, Seconds(3))
-  // val stream = TwitterUtils.createStream(ssc, None)
+  val conf = new SparkConf().setMaster("local[4]").setAppName("geoTweetStream")
+  val ssc = new StreamingContext(conf, Seconds(3))
+  val stream = TwitterUtils.createStream(ssc, None)
 
   // // 形態素解析
   // val tokenizer = Tokenizer.builder.mode(Tokenizer.Mode.NORMAL).build
