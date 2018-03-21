@@ -6,10 +6,8 @@ import org.atilika.kuromoji.Token
 
 object Main extends App{
   // Sparkの初期設定
-  val conf = new SparkConf().setMaster("local").setAppName("geoTweetStream")
-  val sc = new SparkContext(sc)
-  val batchDuration = Seconds(3)
-  val ssc = new StreamingContext(sc, batchDuration)
+  val conf = new SparkConf().setMaster("local[4]").setAppName("geoTweetStream")
+  val ssc = new StreamingContext(conf, Seconds(3))
   val stream = TwitterUtils.createStream(ssc, None)
 
   // 形態素解析

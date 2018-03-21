@@ -1,3 +1,4 @@
 *.class
 *.log
 *.un~
+src/main/resources/application.conf
