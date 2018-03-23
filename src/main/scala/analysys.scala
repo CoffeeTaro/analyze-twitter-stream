@@ -24,10 +24,10 @@ object Main extends App{
   val stream = TwitterUtils.createStream(ssc, None)
 
   // // 形態素解析
-  // val tokenizer = Tokenizer.builder.mode(Tokenizer.Mode.NORMAL).build
-  // val tokens = tokenizer.tokenize("ドはドーナッツのド").toArray
-  // tokens.foreach { t =>
-  //   val token = t.asInstanceOf[Token]
-  //   println(s"${token.getSurfaceForm} - ${token.getAllFeatures}")
-  // }
+  val tokenizer = Tokenizer.builder.mode(Tokenizer.Mode.NORMAL).build
+  val tokens = tokenizer.tokenize("ドはドーナッツのド").toArray
+  tokens.foreach { t =>
+    val token = t.asInstanceOf[Token]
+    println(s"${token.getSurfaceForm} - ${token.getAllFeatures}")
+  }
 }

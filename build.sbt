@@ -10,6 +10,7 @@ resolvers += "Atilika Open Source repository" at "http://www.atilika.org/nexus/c
 libraryDependencies ++= Seq(
     "com.typesafe" % "config" % "1.3.2",
     "org.atilika.kuromoji" % "kuromoji" % "0.7.7",
-    "org.apache.spark" %% "spark-streaming" % "2.3.0" % "provided",
+    "org.apache.spark" %% "spark-core" % "2.3.0",
+    "org.apache.spark" %% "spark-streaming" % "2.3.0" % "provided"exclude("org.spark-project.spark", "unused"),
     "org.apache.spark" %% "spark-streaming-twitter" % "1.6.3"
 )
