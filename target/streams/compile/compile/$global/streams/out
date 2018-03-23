@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/kotaro/github.com/CoffeeTaro/analyze-twitter-stream/src/main/scala/analysys.scala:10:29: recursive value sc needs type[0m
-[0m[[0m[31merror[0m] [0m[0m  val sc = new SparkContext(sc)[0m
-[0m[[0m[31merror[0m] [0m[0m                            ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
