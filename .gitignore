@@ -2,6 +2,7 @@
 *.log
 *.un~
 /src/main/resources/application.conf
+.idea/
 
 dist/*
 target/
