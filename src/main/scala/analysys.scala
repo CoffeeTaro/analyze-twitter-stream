@@ -24,6 +24,13 @@ object Main {
     val ssc = new StreamingContext(conf, Seconds(3))
     val stream = TwitterUtils.createStream(ssc, None)
 
+    // Twitter Streaming APIの使用
+    val stream = TwitterUtils.createStream(ssc, None)
+    twitterStream = stream.flatmap(status => {
+      println(status.getText())
+    }
+    )
+
     // 形態素解析
     val tokenizer = Tokenizer.builder.mode(Tokenizer.Mode.NORMAL).build
     val tokens = tokenizer.tokenize("ドはドーナッツのド").toArray
