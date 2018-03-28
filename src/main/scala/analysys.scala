@@ -19,24 +19,31 @@ object Main {
     System.setProperty("twitter4j.oauth.accessToken", accessToken)
     System.setProperty("twitter4j.oauth.accessTokenSecret",accessTokenSecret)
 
-    // Sparkの初期設定
-    val conf = new SparkConf().setMaster("local[4]").setAppName("geoTweetStream")
-    val ssc = new StreamingContext(conf, Seconds(3))
-    val stream = TwitterUtils.createStream(ssc, None)
+     // Sparkの初期設定
+     val conf = new SparkConf().setMaster("local[4]").setAppName("geoTweetStream")
+     val ssc = new StreamingContext(conf, Seconds(3))
 
-    // Twitter Streaming APIの使用
-    val stream = TwitterUtils.createStream(ssc, None)
-    twitterStream = stream.flatmap(status => {
-      println(status.getText())
-    }
-    )
+     sys.ShutdownHookThread {
+       System.out.println("Gracefully stopping SparkStreaming Application")
+       ssc.stop(true, true)
+       System.out.println("SparkStreaming Application stopped")
+     }
 
-    // 形態素解析
-    val tokenizer = Tokenizer.builder.mode(Tokenizer.Mode.NORMAL).build
-    val tokens = tokenizer.tokenize("ドはドーナッツのド").toArray
-    tokens.foreach { t =>
-      val token = t.asInstanceOf[Token]
-      println(s"${token.getSurfaceForm} - ${token.getAllFeatures}")
-    }
+     // Twitterのストリーム生成
+     val stream = TwitterUtils.createStream(ssc, None)
+
+     val twitterStream = stream.map(status => status.getText())
+     twitterStream.print()
+
+     ssc.start()
+     ssc.awaitTermination()
+
+     // 形態素解析
+     val tokenizer = Tokenizer.builder.mode(Tokenizer.Mode.NORMAL).build
+     val tokens = tokenizer.tokenize("ドはドーナッツのド").toArray
+     tokens.foreach { t =>
+       val token = t.asInstanceOf[Token]
+       println(s"${token.getSurfaceForm} - ${token.getAllFeatures}")
+     }
   }
 }
