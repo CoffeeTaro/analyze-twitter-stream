@@ -2,6 +2,7 @@
 *.log
 *.un~
 /src/main/resources/twitter4j.properties
+/src/main/resources/application.conf
 .idea/
 
 dist/*
