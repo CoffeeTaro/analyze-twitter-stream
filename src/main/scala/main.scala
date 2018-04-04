@@ -1,6 +1,5 @@
 import org.apache.spark._
 import org.apache.spark.streaming._
-import org.apache.spark.streaming.twitter._
 import org.atilika.kuromoji.Tokenizer
 import org.atilika.kuromoji.Token
 
@@ -18,10 +17,9 @@ object Main {
      }
 
      // Twitterのストリーム生成
-     val stream = TwitterUtils.createStream(ssc, None)
-
-     val twitterStream = stream.map(status => status.getText())
-     twitterStream.print()
+     val twitterStream = ssc.receiverStream(new TwitterReceiver("ja"))
+     val twitterStreamText = twitterStream.map(status => status.getText())
+     twitterStreamText.print()
 
      ssc.start()
      ssc.awaitTermination()
