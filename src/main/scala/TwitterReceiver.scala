@@ -7,24 +7,20 @@ class TwitterReceiver(language: String = "ja")
   extends Receiver[Status](StorageLevel.MEMORY_AND_DISK_2){
 
   private def statusListener = new StatusListener() {
-    def onStatus(status: Status): Unit = {
+    override def onStatus(status: Status): Unit = {
       store(status)
     }
-    def onDeletionNotice(notice: StatusDeletionNotice): Unit = {}
-    def onScrubGeo(x1: Long, x2: Long): Unit = {}
-    def onStallWarning(stw: StallWarning): Unit = {}
-    def onTrackLimitationNotice(x: Int): Unit = {}
-    def onException(e: Exception): Unit = {
+    override def onDeletionNotice(notice: StatusDeletionNotice): Unit = {}
+    override def onScrubGeo(x1: Long, x2: Long): Unit = {}
+    override def onStallWarning(stw: StallWarning): Unit = {}
+    override def onTrackLimitationNotice(x: Int): Unit = {}
+    override def onException(e: Exception): Unit = {
       e.printStackTrace
     }
   }
 
   def onStart(): Unit = {
-    new Thread("Socket Receiver") {
-      override def run(): Unit = {
         receive()
-      }
-    }
   }
 
   def onStop(): Unit = {
@@ -38,9 +34,12 @@ class TwitterReceiver(language: String = "ja")
     twitterStream.addListener(statusListener)
     // 起動
     twitterStream.sample(language)
-    while(!isStopped) {}
+    while(!isStopped) {
+
+    }
     // 終了処理
     twitterStream.cleanUp
     twitterStream.shutdown
   }
 }
+
