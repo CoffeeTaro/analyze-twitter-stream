@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
     "org.atilika.kuromoji" % "kuromoji" % "0.7.7",
     "org.apache.spark" %% "spark-core" % "2.2.0" % "provided",
     "org.apache.spark" %% "spark-streaming" % "2.2.0" % "provided",
-    "org.apache.bahir" %% "spark-streaming-twitter" % "2.2.0" exclude("org.spark-project.spark", "unused")
+    "org.apache.bahir" %% "spark-streaming-twitter" % "2.2.0" exclude("org.spark-project.spark", "unused"),
+    "org.twitter4j" % "twitter4j-stream" % "4.0.6"
 )
 
 scalacOptions ++= Seq(
