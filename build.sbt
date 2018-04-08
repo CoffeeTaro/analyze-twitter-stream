@@ -1,6 +1,6 @@
 name := "GeoStream"
 
-scalaVersion := "2.11.10"
+scalaVersion := "2.11.12"
 version := "1.1"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
@@ -8,11 +8,9 @@ scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-Xlint")
 resolvers += "Atilika Open Source repository" at "http://www.atilika.org/nexus/content/repositories/atilika"
 
 libraryDependencies ++= Seq(
-    "com.typesafe" % "config" % "1.3.2",
     "org.atilika.kuromoji" % "kuromoji" % "0.7.7",
-    "org.apache.spark" %% "spark-core" % "2.2.0" % "provided",
-    "org.apache.spark" %% "spark-streaming" % "2.2.0" % "provided",
-    "org.apache.bahir" %% "spark-streaming-twitter" % "2.2.0" exclude("org.spark-project.spark", "unused"),
+    "org.apache.spark" %% "spark-core" % "2.3.0" % "provided",
+    "org.apache.spark" %% "spark-streaming" % "2.3.0" % "provided",
     "org.twitter4j" % "twitter4j-stream" % "4.0.6"
 )
 
